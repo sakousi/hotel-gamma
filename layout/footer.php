@@ -7,7 +7,7 @@
             <li><a href="#">Contact</a></li>
         </ul>
         <!-- TODO: Afficher automatiquement l'année en cours en PHP pour le copyright -->
-        <p>Copyright 2022 Tous droits réservés</p>
+        <p>Copyright <?php echo date("Y") ?> Tous droits réservés</p>
     </div>
     <div class="footer-secondary"></div>
 </footer>
