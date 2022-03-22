@@ -18,8 +18,12 @@ require_once 'layout/header.php';
             <label for="search-category">Catégorie</label>
             <!-- TODO: Afficher dynamiquement la liste des catégories. -->
             <select name="category_id" id="search-category">
-                <option>Chambre</option>
-                <option>Appartement</option>
+              <?php
+              getAllCategory();
+
+              foreach ($categorys->getName() as $name)
+                echo "<option>".$name."</option>";
+              ?>
             </select>
         </div>
         <div class="form-group">
@@ -45,7 +49,8 @@ require_once 'layout/header.php';
             <img src="uploads/<?= $room->getPicture(); ?>" class="img-responsive" alt="<?= $room->getName(); ?>">
           </header>
           <footer>
-            <h3><?= $room->getName(); ?></h3>
+            <h3><?= strtoupper($room->getName()); ?></h3>
+            <p>Catégorie: <?= $room->getCategory()->getName(); ?></p>
             <!-- TODO: Afficher le nom de la catégorie associée à la chambre. -->
             <ul class="room-features">
               <li><i class="fa fa-bed"></i> <?= $room->getNbBeds(); ?></li>

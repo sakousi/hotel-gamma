@@ -35,7 +35,8 @@ function getAllRooms() {
             room.category_id,
             category.name AS category_name
         FROM room
-        INNER JOIN category ON room.category_id = category.id;
+        INNER JOIN category ON room.category_id = category.id
+        ORDER BY room.price;
     ";
 
     $stmt = $connection->prepare($query);
@@ -125,4 +126,21 @@ function getRoomAmenities(int $room_id) {
     $amenities = $stmt->fetchAll(PDO::FETCH_CLASS, Amenity::class);
 
     return $amenities;
+}
+
+function getAllCategory(){
+    global $connection;
+
+    $query = "
+        SELECT
+            name
+        FROM category;
+    ";
+
+    $stmt = $connection->prepare($query);
+    $stmt->execute();
+    
+    $category = $stmt->fetchObject(Category::class);
+    
+    return $category;
 }
